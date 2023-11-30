@@ -37,7 +37,7 @@ jobs:
           git remote add upstream "${UPSTREAM}"
           git fetch upstream
           BRANCH=${{ inputs.release }}
-          git merge upstream/"release-${BRANCH#release-v}"
+          git merge upstream/"${BRANCH}"
 
         shell: bash
 
