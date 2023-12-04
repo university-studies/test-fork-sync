@@ -7,7 +7,7 @@ on:
       release:
         type: string
         required: true
-        description: Release Version
+        description: Branch
 
 jobs:
   sync-upstream:
@@ -29,10 +29,10 @@ jobs:
         working-directory: ./src/github.com/${{ github.repository }}
         run: |
           if ! git config user.name > /dev/null; then
-            git config user.name "John Doe"
+            git config user.name "Bot branch sync"
           fi
           if ! git config user.email > /dev/null; then
-            git config user.email "johndoe@localhost"
+            git config user.email "bot@localhost"
           fi
           git remote add upstream "${UPSTREAM}"
           git fetch upstream
@@ -46,8 +46,8 @@ jobs:
         with:
           path: ./src/github.com/${{ github.repository }}
           branch: auto/sync-upstream-${{ inputs.release }}
-          title: "[${{ inputs.release }}] Sync upstream release"
-          commit-message: "Sync upstream release"
+          title: "[${{ inputs.release }}] Sync upstream"
+          commit-message: "Sync upstream"
           delete-branch: true
           body: |
             Sync upstream release
